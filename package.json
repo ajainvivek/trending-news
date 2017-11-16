@@ -32,8 +32,11 @@
     "compression": "^1.5.2",
     "cors": "^2.7.1",
     "express": "^4.13.3",
+    "lodash": "^4.17.4",
     "morgan": "^1.8.0",
-    "resource-router-middleware": "^0.6.0"
+    "natural": "^0.5.4",
+    "resource-router-middleware": "^0.6.0",
+    "twit": "^2.2.9"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
