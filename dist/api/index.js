@@ -12,6 +12,10 @@ var _facets = require('./facets');
 
 var _facets2 = _interopRequireDefault(_facets);
 
+var _natural = require('./natural');
+
+var _natural2 = _interopRequireDefault(_natural);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (_ref) {
@@ -22,6 +26,9 @@ exports.default = function (_ref) {
 
 	// mount the facets resource
 	api.use('/facets', (0, _facets2.default)({ config: config, db: db }));
+
+	// mount natural
+	api.use('/natural', (0, _natural2.default)());
 
 	// perhaps expose some API metadata at the root
 	api.get('/', function (req, res) {
