@@ -1,0 +1,65 @@
+.ranking {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.ranking-title {
+    padding: 0 10px;
+    background: #fff;
+    position: relative;
+    top: -10px;
+    left: 26px;
+    width: 25%;
+}
+
+.ranking-title-number{
+    border-radius: 14px;
+    background: #91abd6;
+    padding: 5px 10px;
+    color: white;
+    margin-right: 5px;
+}
+.ranking-title-number img {
+    width: auto;
+    height: 16px;
+    padding-left: 5px;
+    vertical-align: middle;
+}
+
+.ranking-title-number-tail{
+    color: #ccc;
+    padding-left: 4px;
+}
+
+.ranking-articles {
+    list-style-type: none;
+    padding-right: 30px;
+}
+.ranking-articles a{
+    text-decoration: none;
+    color: black;
+}
+
+.ranking-articles li:first-child {
+    vertical-align: middle;
+    font-size: 24px;
+    font-weight:bold;
+    padding-top: 0;
+}
+.ranking-articles li:first-child img{
+    display: inline-block;
+    width: 74px;
+    height: auto;
+}
+.ranking-articles li{
+    font-size: 18px;
+    padding: 14px 0 5px 2px;
+    border-bottom: 1px solid #ccc;
+}
+.ranking-articles li img{
+    display: none;
+}
+.ranking-articles li:last-child{
+    border-bottom: 0;
+}
