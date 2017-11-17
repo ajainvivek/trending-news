@@ -6,6 +6,24 @@ export default ({ config, db }) => resource({
 	/** Property name to store preloaded entity on `request`. */
 	id : 'facet',
 
+	fetchTrendData({}, res){
+		var Twit = require('twit');
+
+		var twit = new Twit({
+			consumer_key:         'w7jh87GEfzuy3kMC2rFR4vaYy',
+			consumer_secret:      'ZMQgtVKvWJWszLP8dvXdfHMcaBxYiJwiajfemEqKtD2ABxvrcp',
+			app_only_auth:        true,
+			// access_token:         '...',
+			// access_token_secret:  '...'
+		});
+
+		twit.get('trends/place', { id: 1105779}, function(err, data, response) {
+
+			console.log(data.data[0].trends[0].query);
+			res.json(data.data[0].trends[0].query);
+		})
+	},
+
 	/** For requests with an `id`, you can auto-load the entity.
 	 *  Errors terminate the request, success sets `req[id] = data`.
 	 */
