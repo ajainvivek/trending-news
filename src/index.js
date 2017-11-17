@@ -9,7 +9,7 @@ import api from './api';
 import config from './config.json';
 import nlp from './services/nlp';
 
-nlp.grouped();
+nlp.groupedSimilarity();
 
 let app = express();
 app.server = http.createServer(app);

@@ -1,4 +1,5 @@
 import resource from 'resource-router-middleware';
+import nlp from './../services/nlp';
 
 export default () => resource({
 
@@ -6,6 +7,8 @@ export default () => resource({
 	id : 'natural',
 
 	index({ query }, res) {
-		res.json({hello: 'world'});
+		nlp.groupedSimilarity().then((response) => {
+			res.json(response);
+		});
 	}
 });
