@@ -1,16 +1,16 @@
 import jaccard from './../factory/jaccard';
 import collection from './collection';
-import twitter from './twitter';
+// import twitter from './twitter';
+import twitter from './mockedTwitter';
 import lodash from 'lodash';
 
 const groupByTweet = function (collections, tweets, key, index = 0.1) {
 	const result = {};
-	debugger;
 	// group by tweet name
 	for (let i = 0; i < tweets.length; i++) {
 		result[tweets[i].name] = [];
 		for (let j = 0; j < collections.length; j++) {
-			let text = typeof tweets[i][key] === 'string' ? tweets[i][key] : tweets[i][key].join(',');
+			let text = Array.isArray(tweets[i][key]) ? tweets[i][key][0] : tweets[i][key];
 			let abstract = (collections[j].abstract || collections[j].links[0].abstract || '').replace(/(<p[^>]+?>|<p>|<\/p>)/img, "")
 			let scoreIndexSEO = jaccard.similarity(text, collections[j].seo_headline);
 			let scoreIndexAbstract = jaccard.similarity(text, abstract);
@@ -31,7 +31,17 @@ const groupByTweet = function (collections, tweets, key, index = 0.1) {
 exports.groupedSimilarity = function () {
 	return new Promise((resolve, reject) => {
 		Promise.all([collection.getLatestArticles(), twitter.trendingTweets()]).then((result) => {
+			const articles = [];
 			const groupByTweetName = groupByTweet(result[0], result[1], 'name', 0.1);
+			const filteredArticles = lodash.forOwn(groupByTweetName, (value, key) => {
+				let trend = {};
+				if (value.length > 0) {
+					trend.name = key;
+					trend.data = value;
+				}
+				articles.push(trend);
+			});
+			//const groupByTweetText = groupByTweet(result[0], result[1], 'texts', 0.2);
 			resolve(groupByTweetName);
 		});
 	});
