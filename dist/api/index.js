@@ -31,8 +31,26 @@ exports.default = function (_ref) {
 	api.use('/natural', (0, _natural2.default)());
 
 	// perhaps expose some API metadata at the root
-	api.get('/', function (req, res) {
-		res.json({ version: _package.version });
+	api.get('/trending', function (req, res) {
+		var Twit = require('twit');
+
+		var twit = new Twit({
+			consumer_key: 'w7jh87GEfzuy3kMC2rFR4vaYy',
+			consumer_secret: 'ZMQgtVKvWJWszLP8dvXdfHMcaBxYiJwiajfemEqKtD2ABxvrcp',
+			app_only_auth: true
+		});
+
+		twit.get('trends/place', { id: 1105779 }, function (err, data, response) {
+			// let message = data[0].trends[0].query;
+			twit.get('search/tweets.json', { q: '%22Shaun+Marsh%22' }, function (err, data) {
+				console.log(data);
+			});
+			// console.log(message);
+			// data[0].trends.map((t) => {  });
+
+
+			res.json({ data: data });
+		});
 	});
 
 	return api;
