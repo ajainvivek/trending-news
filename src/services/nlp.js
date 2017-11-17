@@ -38,11 +38,11 @@ exports.groupedSimilarity = function () {
 				if (value.length > 0) {
 					trend.name = key;
 					trend.data = value;
+					articles.push(trend);
 				}
-				articles.push(trend);
 			});
 			//const groupByTweetText = groupByTweet(result[0], result[1], 'texts', 0.2);
-			resolve(groupByTweetName);
+			resolve(articles);
 		});
 	});
 }
